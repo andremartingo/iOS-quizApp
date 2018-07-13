@@ -1,4 +1,4 @@
-protocol Router{
+public protocol Router{
     associatedtype Question: Hashable
     associatedtype Answer
     
