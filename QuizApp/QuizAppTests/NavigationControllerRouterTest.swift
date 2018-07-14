@@ -34,7 +34,7 @@ class NavigationControllerRouterTest: XCTestCase {
     
     func test_routeToResult_showsResultController(){
         let viewController = UIViewController()
-        let result = Result(answers: [Question.singleAnswer("Q1"):"A1"], score: 10)
+        let result = Result(answers: [Question.singleAnswer("Q1"):["A1"]], score: 10)
         factory.stub(result: result, with: viewController)
         
         sut.routeTo(result: result)
@@ -46,7 +46,7 @@ class NavigationControllerRouterTest: XCTestCase {
     func test_routeToQuestion_presentsQuestionControllerWithRightCallback(){
         var callbackWasFired = false
         sut.routeTo(question:Question.singleAnswer("Q1"), answerCallback: {_ in callbackWasFired = true})
-        factory.answerCallback[Question.singleAnswer("Q1") ]!("Anything")
+        factory.answerCallback[Question.singleAnswer("Q1") ]!(["Anything"])
         
         XCTAssertTrue(callbackWasFired)
     }
@@ -61,23 +61,23 @@ class NavigationControllerRouterTest: XCTestCase {
     class ViewControllerFactoryStub: ViewControllerFactory {
         
         private var stubbedQuestion = Dictionary<Question<String>,UIViewController>()
-        private var stubbedResults = Dictionary<Result<Question<String>,String>,UIViewController>()
-        var answerCallback = Dictionary<Question<String>, (String) -> Void> ()
+        private var stubbedResults = Dictionary<Result<Question<String>,[String]>,UIViewController>()
+        var answerCallback = Dictionary<Question<String>, ([String]) -> Void> ()
         
         func stub(question: Question<String>, with viewController: UIViewController) {
             stubbedQuestion[question] = viewController
         }
         
-        func stub(result: Result<Question<String>,String>, with viewController: UIViewController) {
+        func stub(result: Result<Question<String>,[String]>, with viewController: UIViewController) {
             return stubbedResults[result] = viewController
         }
         
-        func questionViewController(for question: Question<String>, answerCallback: @escaping (String)-> Void) -> UIViewController {
+        func questionViewController(for question: Question<String>, answerCallback: @escaping ([String])-> Void) -> UIViewController {
             self.answerCallback[question] = answerCallback
             return stubbedQuestion[question] ?? UIViewController()
         }
         
-        func resultsViewController(for result: Result<Question<String>,String>) -> UIViewController{
+        func resultsViewController(for result: Result<Question<String>,[String]>) -> UIViewController{
             return stubbedResults[result] ?? UIViewController()
         }
     }
