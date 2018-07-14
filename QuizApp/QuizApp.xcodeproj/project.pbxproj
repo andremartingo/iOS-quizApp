@@ -11,6 +11,7 @@
 		30306C8C20F8AD8E0043BDF9 /* NavigationControllerRouterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30306C8B20F8AD8E0043BDF9 /* NavigationControllerRouterTest.swift */; };
 		30306C8E20F8AEC10043BDF9 /* NavigationControllerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30306C8D20F8AEC10043BDF9 /* NavigationControllerRouter.swift */; };
 		30306C9020F9329C0043BDF9 /* QuestionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30306C8F20F9329C0043BDF9 /* QuestionTest.swift */; };
+		30306C9220FA0F290043BDF9 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30306C9120FA0F290043BDF9 /* Question.swift */; };
 		307E6E8320F4DA0A00F6CF2A /* ResultViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307E6E8220F4DA0A00F6CF2A /* ResultViewControllerTest.swift */; };
 		307E6E8520F4DA9100F6CF2A /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307E6E8420F4DA9100F6CF2A /* ResultViewController.swift */; };
 		307E6E8720F4DB0A00F6CF2A /* ResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 307E6E8620F4DB0A00F6CF2A /* ResultViewController.xib */; };
@@ -55,6 +56,7 @@
 		30306C8B20F8AD8E0043BDF9 /* NavigationControllerRouterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerRouterTest.swift; sourceTree = "<group>"; };
 		30306C8D20F8AEC10043BDF9 /* NavigationControllerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerRouter.swift; sourceTree = "<group>"; };
 		30306C8F20F9329C0043BDF9 /* QuestionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTest.swift; sourceTree = "<group>"; };
+		30306C9120FA0F290043BDF9 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		307E6E8220F4DA0A00F6CF2A /* ResultViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewControllerTest.swift; sourceTree = "<group>"; };
 		307E6E8420F4DA9100F6CF2A /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		307E6E8620F4DB0A00F6CF2A /* ResultViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultViewController.xib; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				30F7B0F820F660B100CCBDBC /* CorrectAnswerCell.swift */,
 				30F7B0FA20F660E800CCBDBC /* WrongAnswerCell.swift */,
 				30306C8D20F8AEC10043BDF9 /* NavigationControllerRouter.swift */,
+				30306C9120FA0F290043BDF9 /* Question.swift */,
 			);
 			path = QuizApp;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 				30F7B0F920F660B100CCBDBC /* CorrectAnswerCell.swift in Sources */,
 				308F340620F35C0A00947628 /* AppDelegate.swift in Sources */,
 				30F7B0F720F6609000CCBDBC /* PresentableAnswer.swift in Sources */,
+				30306C9220FA0F290043BDF9 /* Question.swift in Sources */,
 				30F7B0FB20F660E800CCBDBC /* WrongAnswerCell.swift in Sources */,
 				30306C8E20F8AEC10043BDF9 /* NavigationControllerRouter.swift in Sources */,
 				308F343620F35CD100947628 /* QuestionViewController.swift in Sources */,
