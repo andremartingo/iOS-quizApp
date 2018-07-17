@@ -3,6 +3,7 @@ import QuizEngine
 
 struct ResultsPresenter {
     let result : Result<Question<String>, [String]>
+    let questions : [Question<String>]
     let correctAnswers: Dictionary<Question<String>,[String]>
     
     var summary : String {
@@ -10,8 +11,9 @@ struct ResultsPresenter {
     }
     
     var presentableAnswers: [PresentableAnswer] {
-        return result.answers.map { (question,userAnswers) in
-            guard let correctAnswer = correctAnswers[question] else {
+        return questions.map { (question) in
+            guard let correctAnswer = correctAnswers[question],
+            let userAnswers = result.answers[question] else {
                 fatalError("could find correct answer for \(question)")
             }
             return presentableAnswer(question, userAnswers, correctAnswer)

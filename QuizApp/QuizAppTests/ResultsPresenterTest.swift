@@ -9,7 +9,7 @@ class ResultsPresenterTest: XCTestCase {
         let answers = [Question.singleAnswer("Q1"):["A1"], Question.multipleAnswer("Q2"):["A2","A3"]]
         let result = Result(answers: answers, score: 1)
         
-        let sut = ResultsPresenter(result: result, correctAnswers: [:])
+        let sut = ResultsPresenter(result: result, questions: [Question.singleAnswer("Q1"),Question.multipleAnswer("Q2")] ,correctAnswers: [:])
 
         XCTAssertEqual(sut.summary, "You got 1/2 correct")
     }
@@ -18,7 +18,7 @@ class ResultsPresenterTest: XCTestCase {
         let answers = Dictionary<Question<String>,[String]>()
         let result = Result(answers: answers, score: 0)
         
-        let sut = ResultsPresenter(result: result, correctAnswers: [:])
+        let sut = ResultsPresenter(result: result, questions: [ ], correctAnswers: [:])
 
         XCTAssertTrue(sut.presentableAnswers.isEmpty)
     }
@@ -28,9 +28,9 @@ class ResultsPresenterTest: XCTestCase {
         let result = Result(answers: answers, score: 0)
         let correctAnswers = [Question.singleAnswer("Q1"): ["A2"]]
         
-        let sut = ResultsPresenter(result: result, correctAnswers: correctAnswers)
+        let sut = ResultsPresenter(result: result,  questions: [Question.singleAnswer("Q1")] , correctAnswers: correctAnswers)
         
-        XCTAssertEqual(sut.presentableAnswers.count,1)
+        XCTAssertEqual(sut.presentableAnswers.count ,1)
         XCTAssertEqual(sut.presentableAnswers.first!.question, "Q1")
         XCTAssertEqual(sut.presentableAnswers.first!.answer, "A2")
         XCTAssertEqual(sut.presentableAnswers.first!.wrongAnswer, "A1")
@@ -41,7 +41,7 @@ class ResultsPresenterTest: XCTestCase {
         let correctAnswers = [Question.singleAnswer("Q1"): ["A2","A3"]]
         let result = Result(answers: answers, score: 0)
         
-        let sut = ResultsPresenter(result: result, correctAnswers: correctAnswers)
+        let sut = ResultsPresenter(result: result,  questions: [Question.singleAnswer("Q1")] , correctAnswers: correctAnswers)
         
         XCTAssertEqual(sut.presentableAnswers.count,1)
         XCTAssertEqual(sut.presentableAnswers.first!.question, "Q1")
@@ -54,11 +54,29 @@ class ResultsPresenterTest: XCTestCase {
         let correctAnswers = [Question.singleAnswer("Q1"): ["A1","A4"]]
         let result = Result(answers: answers, score: 0)
         
-        let sut = ResultsPresenter(result: result, correctAnswers: correctAnswers)
+        let sut = ResultsPresenter(result: result,  questions: [Question.singleAnswer("Q1")] , correctAnswers: correctAnswers)
         
         XCTAssertEqual(sut.presentableAnswers.count,1)
         XCTAssertEqual(sut.presentableAnswers.first!.question, "Q1")
         XCTAssertEqual(sut.presentableAnswers.first!.answer, "A1, A4")
         XCTAssertEqual(sut.presentableAnswers.first!.wrongAnswer, nil)
+    }
+    
+    func test_presentableAnswers_withTwoQuestion_mapOrderAnswer() {
+        let answers = [Question.multipleAnswer("Q2"):["A2"],Question.multipleAnswer("Q1"):["A1","A4"]]
+        let correctAnswers = [Question.multipleAnswer ("Q1"): ["A1","A4"],Question.multipleAnswer("Q2"):["A2"]]
+        let orderQuestions = [Question.multipleAnswer("Q1"),Question.multipleAnswer("Q2")]
+        let result = Result(answers: answers, score: 0)
+        
+        let sut = ResultsPresenter(result: result, questions: orderQuestions, correctAnswers: correctAnswers)
+        
+        XCTAssertEqual(sut.presentableAnswers.count,2)
+        XCTAssertEqual(sut.presentableAnswers.first!.question, "Q1")
+        XCTAssertEqual(sut.presentableAnswers.first!.answer, "A1, A4")
+        XCTAssertNil(sut.presentableAnswers.first!.wrongAnswer)
+
+        XCTAssertEqual(sut.presentableAnswers.last!.question, "Q2")
+        XCTAssertEqual(sut.presentableAnswers.first!.answer, "A1, A4")
+        XCTAssertNil(sut.presentableAnswers.first!.wrongAnswer)
     }
 }
