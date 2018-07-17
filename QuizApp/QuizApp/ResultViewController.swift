@@ -6,7 +6,7 @@ class ResultViewController: UIViewController,UITableViewDataSource,UITableViewDe
     
     private var summary = ""
     private var answers = [PresentableAnswer]()
-
+ 
     convenience init(summary: String, answers: [PresentableAnswer]){
         self.init()
         self.summary = summary
