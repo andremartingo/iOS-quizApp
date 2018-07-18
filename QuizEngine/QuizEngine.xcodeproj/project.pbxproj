@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		301F523D20FF49110001CEBC /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301F523C20FF49110001CEBC /* Question.swift */; };
+		301F523E20FF49110001CEBC /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301F523C20FF49110001CEBC /* Question.swift */; };
+		301F524020FF49210001CEBC /* QuestionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301F523F20FF49210001CEBC /* QuestionTest.swift */; };
+		301F524120FF49210001CEBC /* QuestionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301F523F20FF49210001CEBC /* QuestionTest.swift */; };
 		3048203020F7CABD007F4673 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3048202F20F7CABD007F4673 /* Result.swift */; };
 		3048203220F7CAD7007F4673 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3048203120F7CAD7007F4673 /* Router.swift */; };
 		3048203420F7CB40007F4673 /* GameTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3048203320F7CB40007F4673 /* GameTest.swift */; };
@@ -43,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		301F523C20FF49110001CEBC /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
+		301F523F20FF49210001CEBC /* QuestionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTest.swift; sourceTree = "<group>"; };
 		3048202F20F7CABD007F4673 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		3048203120F7CAD7007F4673 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		3048203320F7CB40007F4673 /* GameTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTest.swift; sourceTree = "<group>"; };
@@ -116,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				30B36D1220EA3EF90003EA66 /* Info.plist */,
+				301F523C20FF49110001CEBC /* Question.swift */,
 				30B36D2A20EA3F330003EA66 /* Flow.swift */,
 				3048202F20F7CABD007F4673 /* Result.swift */,
 				3048203120F7CAD7007F4673 /* Router.swift */,
@@ -128,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				30B36D1E20EA3EFA0003EA66 /* Info.plist */,
+				301F523F20FF49210001CEBC /* QuestionTest.swift */,
 				30B36D2820EA3F270003EA66 /* FlowTest.swift */,
 				3048203320F7CB40007F4673 /* GameTest.swift */,
 				3048203720F7CCB1007F4673 /* RouterSpy.swift */,
@@ -313,6 +321,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				301F523E20FF49110001CEBC /* Question.swift in Sources */,
 				3048205620F8AB84007F4673 /* Result.swift in Sources */,
 				3048205720F8AB84007F4673 /* Router.swift in Sources */,
 				3048205520F8AB84007F4673 /* Flow.swift in Sources */,
@@ -325,6 +334,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3048205920F8AB88007F4673 /* FlowTest.swift in Sources */,
+				301F524120FF49210001CEBC /* QuestionTest.swift in Sources */,
 				3048205A20F8AB88007F4673 /* GameTest.swift in Sources */,
 				3048205B20F8AB88007F4673 /* RouterSpy.swift in Sources */,
 			);
@@ -334,6 +344,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				301F523D20FF49110001CEBC /* Question.swift in Sources */,
 				3048203020F7CABD007F4673 /* Result.swift in Sources */,
 				3048203220F7CAD7007F4673 /* Router.swift in Sources */,
 				30B36D2B20EA3F330003EA66 /* Flow.swift in Sources */,
@@ -346,6 +357,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				30B36D2920EA3F270003EA66 /* FlowTest.swift in Sources */,
+				301F524020FF49210001CEBC /* QuestionTest.swift in Sources */,
 				3048203420F7CB40007F4673 /* GameTest.swift in Sources */,
 				3048203820F7CCB1007F4673 /* RouterSpy.swift in Sources */,
 			);

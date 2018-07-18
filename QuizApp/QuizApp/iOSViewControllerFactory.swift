@@ -5,10 +5,12 @@ class iOSViewControllerFactory: ViewControllerFactory {
     
     private let options: Dictionary<Question<String>,[String]>
     private let questions: [Question<String>]
+    private let correctAnswers: Dictionary<Question<String>,[String]>
     
-    init(questions: [Question<String>] , options: Dictionary<Question<String>,[String]>) {
+    init(questions: [Question<String>] , options: Dictionary<Question<String>,[String]>, correctAnswers: Dictionary<Question<String>,[String]>) {
         self.options = options
         self.questions = questions
+        self.correctAnswers = correctAnswers
     }
     
     func questionViewController(for question: Question<String>, answerCallback: @escaping ([String])-> Void) -> UIViewController {
@@ -30,8 +32,10 @@ class iOSViewControllerFactory: ViewControllerFactory {
         controller.title = presenter.title
         return controller
     }
+    
     func resultsViewController(for result: Result<Question<String>,[String]  >) -> UIViewController{
-        return UIViewController()
+        let presenter = ResultsPresenter(result: result, questions: questions, correctAnswers: correctAnswers)
+        return ResultViewController(summary: presenter.summary, answers: presenter.presentableAnswers)
     }
 }
 

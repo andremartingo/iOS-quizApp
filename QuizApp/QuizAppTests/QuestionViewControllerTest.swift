@@ -1,5 +1,6 @@
 import Foundation
 import XCTest
+import QuizEngine
 @testable import QuizApp
 
 class QuestionViewControllerTest : XCTestCase {
@@ -107,7 +108,7 @@ class QuestionViewControllerTest : XCTestCase {
                  options: [String],
                  selection: @escaping ([String]) -> Void = {_ in}) -> QuestionViewController {
         let questionType = Question.singleAnswer(question)
-        let factory = iOSViewControllerFactory(questions: [], options: [questionType:options])
+        let factory = iOSViewControllerFactory(questions: [], options: [questionType:options], correctAnswers: [:])
         let sut = factory.questionViewController(for: questionType, answerCallback: selection) as! QuestionViewController
         _ = sut.view
         return sut
