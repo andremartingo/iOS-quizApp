@@ -51,6 +51,45 @@ class NavigationControllerRouterTest: XCTestCase {
         XCTAssertTrue(callbackWasFired)
     }
     
+    func test_routeToQuestion_multipleAnswer_presentsQuestionControllerWithRightCallback(){
+        var callbackWasFired = false
+        sut.routeTo(question:Question.multipleAnswer("Q1"), answerCallback: {_ in callbackWasFired = true})
+        factory.answerCallback[Question.multipleAnswer("Q1") ]!(["Anything"])
+        
+        XCTAssertFalse(callbackWasFired)
+    }
+    
+    
+    func test_routeToQuestion_multipleAnswerSubmitButton_isDisableWhenZeroAnswerSelected(){
+        let viewController = UIViewController()
+        factory.stub(question: Question.multipleAnswer("Q1"), with: viewController)
+        
+        sut.routeTo(question:Question.multipleAnswer("Q1"), answerCallback: {_ in })
+    
+        XCTAssertFalse(viewController.navigationItem.rightBarButtonItem!.isEnabled)
+        
+        factory.answerCallback[Question.multipleAnswer("Q1")]!(["A1"])
+        XCTAssertTrue(viewController.navigationItem.rightBarButtonItem!.isEnabled)
+        
+        factory.answerCallback[Question.multipleAnswer("Q1")]!([])
+        XCTAssertFalse(viewController.navigationItem.rightBarButtonItem!.isEnabled)
+        
+    }
+
+    func test_routeToQuestion_multipleAnswerSubmitButton_progressToNextQuestion(){
+        let viewController = UIViewController()
+        factory.stub(question: Question.multipleAnswer("Q1"), with: viewController)
+        
+        var callbackWasFired = false
+        sut.routeTo(question:Question.multipleAnswer("Q1"), answerCallback: {_ in callbackWasFired = true })
+        factory.answerCallback[Question.multipleAnswer("Q1")]!(["A1"])
+        let button = viewController.navigationItem.rightBarButtonItem!
+        
+        button.target?.performSelector(onMainThread: button.action!, with: nil, waitUntilDone: true)
+        XCTAssertTrue(callbackWasFired)
+        
+    }
+    
     //Need to override push view controller because animations delay and test fail 
     class FakeNavigationViewController: UINavigationController {
         override func pushViewController(_ viewController: UIViewController, animated: Bool) {

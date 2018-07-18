@@ -40,7 +40,7 @@ class iOSViewControllerFactoryTest: XCTestCase {
         let controller = sut.questionViewController(for: multipleAnswerQuestion, answerCallback: {_ in}) as! QuestionViewController
         _ = controller.view
         
-        XCTAssertTrue(controller.tableView.allowsMultipleSelection)
+        XCTAssertTrue(controller.allowMultipleSelection)
         
     }
     

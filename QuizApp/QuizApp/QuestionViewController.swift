@@ -7,13 +7,16 @@ class QuestionViewController: UIViewController,UITableViewDataSource, UITableVie
     
     private(set) var question: String = ""
     private(set) var options: [String] = []
+    private(set) var allowMultipleSelection = false
+
     private let reuseIdentifier = "Cell"
     private var selection: (([String])-> Void)? = nil
     
-    convenience init(question: String, options: [String],selection: @escaping ([String])->Void){
+    convenience init(question: String, options: [String],allowMultipleSelection: Bool,selection: @escaping ([String])->Void){
         self.init()
         self.question = question
         self.options = options
+        self.allowMultipleSelection = allowMultipleSelection
         self.selection = selection
     }
     
