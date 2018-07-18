@@ -2,9 +2,9 @@ import Foundation
 import QuizEngine
 
 struct ResultsPresenter {
-    let result : Result<Question<String>, [String]>
+    let result : Result<Question<String>, Set<String>>
     let questions : [Question<String>]
-    let correctAnswers: Dictionary<Question<String>,[String]>
+    let correctAnswers: Dictionary<Question<String>,Set<String>>
     
     var summary : String {
         return "You got \(result.scoring)/\(result.answers.count) correct"
@@ -16,7 +16,7 @@ struct ResultsPresenter {
             let userAnswers = result.answers[question] else {
                 fatalError("could find correct answer for \(question)")
             }
-            return presentableAnswer(question, userAnswers, correctAnswer)
+            return presentableAnswer(question, Array(userAnswers), Array(correctAnswer))
         }
     }
     

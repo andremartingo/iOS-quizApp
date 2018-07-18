@@ -5,15 +5,15 @@ class iOSViewControllerFactory: ViewControllerFactory {
     
     private let options: Dictionary<Question<String>,[String]>
     private let questions: [Question<String>]
-    private let correctAnswers: Dictionary<Question<String>,[String]>
+    private let correctAnswers: Dictionary<Question<String>,Set<String>>
     
-    init(questions: [Question<String>] , options: Dictionary<Question<String>,[String]>, correctAnswers: Dictionary<Question<String>,[String]>) {
+    init(questions: [Question<String>] , options: Dictionary<Question<String>,[String]>, correctAnswers: Dictionary<Question<String>,Set<String>>) {
         self.options = options
         self.questions = questions
         self.correctAnswers = correctAnswers
     }
     
-    func questionViewController(for question: Question<String>, answerCallback: @escaping ([String])-> Void) -> UIViewController {
+    func questionViewController(for question: Question<String>, answerCallback: @escaping (Set<String>)-> Void) -> UIViewController {
         guard let options = self.options[question] else {
             fatalError("error")
         }
@@ -26,14 +26,14 @@ class iOSViewControllerFactory: ViewControllerFactory {
         }
     }
     
-    private func questionViewController(for question: Question<String>, value: String, allowMultipleSelection : Bool , options: [String], answerCallback: @escaping ([String])-> Void) -> QuestionViewController{
+    private func questionViewController(for question: Question<String>, value: String, allowMultipleSelection : Bool , options: [String], answerCallback: @escaping (Set<String>)-> Void) -> QuestionViewController{
         let presenter = QuestionPresenter(questions: questions, question: question)
-        let controller = QuestionViewController(question: value, options: options , allowMultipleSelection : allowMultipleSelection , selection:answerCallback)
+        let controller = QuestionViewController(question: value, options: options , allowMultipleSelection : allowMultipleSelection , selection: {answerCallback(Set($0))})
         controller.title = presenter.title
         return controller
     }
     
-    func resultsViewController(for result: Result<Question<String>,[String]  >) -> UIViewController{
+    func resultsViewController(for result: Result<Question<String>,Set<String>>) -> UIViewController{
         let presenter = ResultsPresenter(result: result, questions: questions, correctAnswers: correctAnswers)
         return ResultViewController(summary: presenter.summary, answers: presenter.presentableAnswers)
     }

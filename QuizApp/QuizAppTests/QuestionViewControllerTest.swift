@@ -33,7 +33,7 @@ class QuestionViewControllerTest : XCTestCase {
         //Given
         var receivedAnswer = [String]()
         let sut = makeSUT(options: ["A1"]) {
-            receivedAnswer = $0
+            receivedAnswer = Array(Array($0))
         }
 
         //When
@@ -46,7 +46,7 @@ class QuestionViewControllerTest : XCTestCase {
     func test_optionSelected_withTwoOptions_notifiesDelegateWithLastSelection(){
         var receivedAnswer = [String]()
         let sut = makeSUT(options: ["A1","A2"]) {
-            receivedAnswer = $0
+            receivedAnswer = Array(Array($0))
         }
         
         sut.tableView.select(row: 0)
@@ -61,7 +61,7 @@ class QuestionViewControllerTest : XCTestCase {
     func test_optionSelected_withMultipleSelectionEnable_notifiesDelegateSelection(){
         var receivedAnswer = [String]()
         let sut = makeSUT(options: ["A1","A2"]) {
-            receivedAnswer = $0
+            receivedAnswer = Array($0)
         }
         sut.tableView.allowsMultipleSelection = true
         
@@ -69,14 +69,14 @@ class QuestionViewControllerTest : XCTestCase {
         XCTAssertEqual(receivedAnswer, ["A1"])
         
         sut.tableView.select(row: 1)
-        XCTAssertEqual(receivedAnswer, ["A1","A2"])
+        XCTAssertEqual(receivedAnswer.count, 2)
     }
     
     func test_optionDeselected_withSingleSelection_DoesNotNotifyDelegateWithEmptySelection(){
         var receivedAnswer = [String]()
         var callbackCount = 0
         let sut = makeSUT(options: ["A1","A2"]) {
-            receivedAnswer = $0
+            receivedAnswer = Array($0)
             callbackCount += 1
         }
 
@@ -92,7 +92,7 @@ class QuestionViewControllerTest : XCTestCase {
     func test_optionDeselected_withMultipleSelectionEnable_notifiesDelegateSelection(){
         var receivedAnswer = [String]()
         let sut = makeSUT(options: ["A1","A2"]) {
-            receivedAnswer = $0
+            receivedAnswer = Array($0)
         }
         sut.tableView.allowsMultipleSelection = true
         
@@ -106,7 +106,7 @@ class QuestionViewControllerTest : XCTestCase {
     // MARK: Helpers
     func makeSUT(question: String = "",
                  options: [String],
-                 selection: @escaping ([String]) -> Void = {_ in}) -> QuestionViewController {
+                 selection: @escaping (Set<String>) -> Void = {_ in}) -> QuestionViewController {
         let questionType = Question.singleAnswer(question)
         let factory = iOSViewControllerFactory(questions: [], options: [questionType:options], correctAnswers: [:])
         let sut = factory.questionViewController(for: questionType, answerCallback: selection) as! QuestionViewController
